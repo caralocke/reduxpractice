@@ -40,25 +40,29 @@ export const callProductListApi = createAsyncThunk('/product/callproductlistapi'
   }
 })
 
+
+//pending state
+//fulfilled state
+//rejected
 const productSlice = createSlice({
   name : 'product', 
   initialState,
   reducers : {
     getProducts: (state) => {
       state.productList = data;
+    }
+  },
+  extraReducers : {
+    [callProductListApi.pending] : (state) => {
+      state.isLoading = true
     },
-    extraReducers : {
-      [callProductListApi.pending] : (state) => {
-        state.isLoading = true
-      },
-      [callProductListApi.fulfilled] : (state, action) => {
-        console.log('action', action);
-        state.isLoading = true
-      },
-      [callProductListApi.rejected] : (state) => {
-        state.isLoading = false
-        state.isFailed = true
-      }
+    [callProductListApi.fulfilled] : (state, action) => {
+      console.log('action', action);
+      state.isLoading = true
+    },
+    [callProductListApi.rejected] : (state) => {
+      state.isLoading = false
+      state.isFailed = true
     }
   }
 });
