@@ -34,6 +34,7 @@ export const callProductListApi = createAsyncThunk('/product/callproductlistapi'
     const result = await apiResponse.json()
 
     return result;
+
   } catch(error) {
     console.log(error)
   }
